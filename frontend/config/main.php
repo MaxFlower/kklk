@@ -41,10 +41,12 @@ return [
             'enableStrictParsing' => false,
             'showScriptName' => false,
             'rules'=>[
+                ''=>'site/index',
                 'login'=>'site/login',
                 'signup'=>'site/signup',
                 'about'=>'site/about',
                 'contact'=>'site/contact',
+                'logout'=>'site/logout',
             ],                                   
         ],
         'authManager' => [

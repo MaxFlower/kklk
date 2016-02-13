@@ -47,7 +47,7 @@ AppAsset::register($this);
             echo "<li class='signup'><a href='/signup'>Регистрация</a></li>";
         } else {
             /*Дописать метод post для выхода*/
-            echo "<li class='signup'>" . Yii::$app->user->identity->username . "<a href='/logout'>Выход</a></li>";
+            echo "<li class='login'>(" . Yii::$app->user->identity->username . ") <a href='/logout' data-method='post'>Выход</a></li>";
         } 
         ?>        
         <div class="ribbon-left"><img src="img/ribbon.png"/></div>
