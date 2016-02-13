@@ -36,18 +36,18 @@ AppAsset::register($this);
     </header>
 
     <nav>
-        <li class="active"><a href="/site/index">Главная</a></li>
-        <li><a href="#">Объявления</a></li>
-        <li><a href="/site/contact">События</a></li>
-        <li><a href="/site/about">О нас</a></li>
+        <li class="active"><a href="<?= Yii::$app->homeUrl ?>">Главная</a></li>
+        <li><a href="/about">Объявления</a></li>
+        <li><a href="/contact">События</a></li>
+        <li><a href="/about">О нас</a></li>
 
         <?php
         if (Yii::$app->user->isGuest) {
-            echo "<li class='login'><a href='/site/signup'>Вход</a></li>";
-            echo "<li class='signup'><a href='/site/signup'>Регистрация</a></li>";
+            echo "<li class='login'><a href='/login'>Вход</a></li>";
+            echo "<li class='signup'><a href='/signup'>Регистрация</a></li>";
         } else {
             /*Дописать метод post для выхода*/
-            echo "<li class='signup'>" . Yii::$app->user->identity->username . "<a href='/site/logout'>Выход</a></li>";
+            echo "<li class='signup'>" . Yii::$app->user->identity->username . "<a href='/logout'>Выход</a></li>";
         } 
         ?>        
         <div class="ribbon-left"><img src="img/ribbon.png"/></div>

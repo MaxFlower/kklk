@@ -39,7 +39,13 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => false,
-            'showScriptName' => false,                                   
+            'showScriptName' => false,
+            'rules'=>[
+                'login'=>'site/login',
+                'signup'=>'site/signup',
+                'about'=>'site/about',
+                'contact'=>'site/contact',
+            ],                                   
         ],
         'authManager' => [
             'class' => 'yii\rbac\DBManager',
