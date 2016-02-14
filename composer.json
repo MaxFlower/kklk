@@ -20,7 +20,8 @@
         "yiisoft/yii2-swiftmailer": "*",        
         "2amigos/yii2-date-picker-widget": "~1.0",
         "dmstr/yii2-adminlte-asset": "2.*",
-        "developeruz/yii2-db-rbac": "*"        
+        "developeruz/yii2-db-rbac": "*",
+        "yiisoft/yii2-jui": "~2.0.0"        
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

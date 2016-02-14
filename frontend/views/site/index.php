@@ -3,6 +3,8 @@
 /* @var $this yii\web\View */
 
 $this->title = 'Калининградский Клуб Любителей Кошек (ККЛК)';
+
+$this->registerJsFile('@web/js/main-index.js', ['position'=>$this::POS_END], 'main-index')
 ?>
 
 <section class="left">
@@ -33,7 +35,7 @@ $this->title = 'Калининградский Клуб Любителей Ко�
             <div class="label-text"><span>Календарь событий</span></div>
         </div>
         <div class="events-calendar">
-            <div id="datepicker"></div>
+            <div id="datepicker"></div>            
         </div>
     </div>
             

@@ -459,7 +459,7 @@ nav li.active {
 }
 
 nav li.login {
-  margin-left: 150px;
+  margin-left: 170px;
   padding: 0;
 }
 
@@ -801,12 +801,12 @@ footer p {
 }
 
 .events-calendar .ui-datepicker-prev span {
-  background-image: url("../../vendors/jquery-ui/themes/base/images/ui-icons_ffffff_256x240.png") !important;
+  background-image: url("../img/ui-icons_ffffff_256x240.png") !important;
   background-position: -96px 0 !important;
 }
 
 .events-calendar .ui-datepicker-next span {
-  background-image: url("../../vendors/jquery-ui/themes/base/images/ui-icons_ffffff_256x240.png") !important;
+  background-image: url("../img/ui-icons_ffffff_256x240.png") !important;
   background-position: -32px 0 !important;
 }
 
@@ -852,10 +852,13 @@ footer p {
 }
 
 html {
+  width: 100%;
   height: 100%;
 }
 
 body {
+  width: 1280px;
+  margin: 0 auto;
   height: 100%;
   background-color: #f5e9dd;
   font-family: 'Roboto', sans-serif;
