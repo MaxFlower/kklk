@@ -20,24 +20,20 @@ $fieldOptions2 = [
 ?>
 
 <div class="login-box">
-    <div class="login-logo">
-        <a href="#"><b>Admin</b>LTE</a>
-    </div>
-    <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+        <p class="login-box-msg">Осуществите вход для расширенных возможностей:</p>
 
-        <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
+        <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => true]); ?>
 
         <?= $form
             ->field($model, 'username', $fieldOptions1)
             ->label(false)
-            ->textInput(['placeholder' => $model->getAttributeLabel('username')]) ?>
+            ->textInput(['placeholder' => $model->getAttributeLabel('Ваш логин')]) ?>
 
         <?= $form
             ->field($model, 'password', $fieldOptions2)
             ->label(false)
-            ->passwordInput(['placeholder' => $model->getAttributeLabel('password')]) ?>
+            ->passwordInput(['placeholder' => $model->getAttributeLabel('Ваш пароль')]) ?>
 
         <div class="row">
             <div class="col-xs-8">
@@ -45,7 +41,7 @@ $fieldOptions2 = [
             </div>
             <!-- /.col -->
             <div class="col-xs-4">
-                <?= Html::submitButton('Sign in', ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'login-button']) ?>
+                <?= Html::submitButton('Войти', ['class' => 'btn btn-success btn-block btn-flat', 'name' => 'login-button']) ?>
             </div>
             <!-- /.col -->
         </div>
@@ -56,8 +52,8 @@ $fieldOptions2 = [
         
         <!-- /.social-auth-links -->
 
-        <a href="#">I forgot my password</a><br>
-        <a href="register.html" class="text-center">Register a new membership</a>
+        <a href="#">Я забыл пароль</a><br>
+        <a href="/signup" class="text-center">Зарегистрироваться</a>
 
     </div>
     <!-- /.login-box-body -->

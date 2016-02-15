@@ -41,7 +41,7 @@ AppAsset::register($this);
 </div>
 
 
-<footer>
+<footer class="col-md-4 col-md-offset-4">
     <p>Калининградский клуб любителей кошек (ККЛК) &copy; <?= date('Y') ?>  тел.: 8-911-123-34-45</p>
 </footer>
 
