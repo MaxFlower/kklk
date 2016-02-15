@@ -82,6 +82,7 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        $this->layout = 'empty_layout';
         if (!\Yii::$app->user->isGuest) {
             return $this->goHome();
         }
