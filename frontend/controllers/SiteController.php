@@ -149,6 +149,7 @@ class SiteController extends Controller
      */
     public function actionSignup()
     {
+        $this->layout = 'empty_layout';
         $model = new SignupForm();
         $authItems = authItem::find()->all();
 

@@ -6,7 +6,7 @@ use yii\bootstrap\ActiveForm;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \common\models\LoginForm */
 
-$this->title = 'Sign In';
+$this->title = 'Войти / ККЛК';
 
 $fieldOptions1 = [
     'options' => ['class' => 'form-group has-feedback'],
@@ -50,8 +50,6 @@ $fieldOptions2 = [
         <?php ActiveForm::end(); ?>
 
         
-        <!-- /.social-auth-links -->
-
         <a href="#">Я забыл пароль</a><br>
         <a href="/signup" class="text-center">Зарегистрироваться</a>
 

@@ -350,14 +350,13 @@ input[type="submit"],
 input[type="reset"],
 input[type="button"] {
   display: inline-block;
-  width: 70px;
+  min-width: 70px;
   padding: 0 6px;
   color: #50600f;
   text-align: center;
   font-size: 13px;
   font-weight: 400;
-  text-transform: uppercase;
-  text-decoration: underline;
+  text-transform: uppercase;  
   white-space: nowrap;
   background-color: #fff;
   border-radius: 12px;
