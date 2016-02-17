@@ -56,7 +56,7 @@ $fieldOptions3 = [
             <?php ActiveForm::end(); ?>
             
 
-            <a href="/login">Я уже зарегистрированн</a><br>
+            <a href="/login">Я уже зарегистрирован</a><br>
            
         
     </div>

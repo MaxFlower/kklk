@@ -37,7 +37,7 @@ $fieldOptions2 = [
 
         <div class="row">
             <div class="col-xs-8">
-                <?= $form->field($model, 'rememberMe')->checkbox() ?>
+                <?= $form->field($model, 'rememberMe')->label('Запомнить')->checkbox() ?>
             </div>
             <!-- /.col -->
             <div class="col-xs-4">
