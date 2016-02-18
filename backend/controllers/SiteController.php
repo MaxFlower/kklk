@@ -30,7 +30,11 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => ['login'],
+                        'allow' => true,
+                    ],    
+                    [
+                        'actions' => ['error'],
                         'allow' => true,
                     ],
                     [
@@ -63,6 +67,7 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
+        echo "<script>alert('')</script>";
         return $this->render('index');
     }
 
