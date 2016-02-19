@@ -67,7 +67,6 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        echo "<script>alert('')</script>";
         return $this->render('index');
     }
 
@@ -88,16 +87,17 @@ class SiteController extends Controller
 
     public function actionLogin()
     {
+        
         if (!\Yii::$app->user->isGuest) {
             return $this->goHome();
         }
-        
+        $this->layout = '//main-login';
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {            
-            $logValue = new LogList();
-            $logValue->user = Yii::$app->user->identity->username;
-            $logValue->action_description = "User log in";            
-            $logValue->save();
+            //$logValue = new LogList();
+            //$logValue->user = Yii::$app->user->identity->username;
+            //$logValue->action_description = "User log in";            
+            //$logValue->save();
             return $this->goBack();
         } else {
             return $this->render('login', [

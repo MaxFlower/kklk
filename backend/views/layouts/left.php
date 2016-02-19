@@ -32,9 +32,9 @@
                 'items' => [
                     ['label' => 'Admin меню', 'options' => ['class' => 'header']],
                     ['label' => 'Рабочий стол', 'icon' => 'fa fa-newspaper-o', 'url' => Yii::$app->homeUrl],
-                    ['label' => 'Профиль', 'icon' => 'fa fa-user', 'url' => ['/site/profile']],
-                    ['label' => 'Календарь', 'icon' => 'fa fa-calendar', 'url' => ['/site/calendar']],                    
-                    ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
+                    ['label' => 'Профиль', 'icon' => 'fa fa-user', 'url' => ['/profile']],
+                    ['label' => 'Календарь', 'icon' => 'fa fa-calendar', 'url' => ['/calendar']],                    
+                    ['label' => 'Login', 'url' => ['/login'], 'visible' => Yii::$app->user->isGuest],
                     [
                         'label' => 'User менеджер',
                         'icon' => 'fa fa-group',

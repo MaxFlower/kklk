@@ -7,22 +7,28 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Reset password';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Сброс пароля / ККЛК';
+
+$fieldOptions1 = [
+    'options' => ['class' => 'form-group has-feedback'],
+    'inputTemplate' => "{input}<span class='glyphicon glyphicon-lock form-control-feedback'></span>"
+];
+
 ?>
 <div class="site-reset-password">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>Please choose your new password:</p>
-
+    
     <div class="row">
-        <div class="col-lg-5">
+        <div class="col-xs-11">
+            <p>Пожалуйста, установите новый пароль:</p>
             <?php $form = ActiveForm::begin(['id' => 'reset-password-form']); ?>
 
-                <?= $form->field($model, 'password')->passwordInput() ?>
+                <?= $form
+                ->field($model, 'password', $fieldOptions1)
+                ->label(false)
+                ->passwordInput(['placeholder' => $model->getAttributeLabel('Ваш новый пароль')]) ?>                
 
                 <div class="form-group">
-                    <?= Html::submitButton('Save', ['class' => 'btn btn-primary']) ?>
+                    <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
                 </div>
 
             <?php ActiveForm::end(); ?>

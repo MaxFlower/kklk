@@ -59,10 +59,14 @@ return [
             'enableStrictParsing' => false,
             'showScriptName' => false,
             'rules' => [
-                '<controller>/<action>' => '<controller>/<action>',
-                '<controller>/<action>/<id:\d+>' => '<controller>/<action>',               
+                             
                 '<module:\w+>/<controller:\w+>/<action:(\w|-)+>' => '<module>/<controller>/<action>',
                 '<module:\w+>/<controller:\w+>/<action:(\w|-)+>/<id:\d+>' => '<module>/<controller>/<action>',
+                '' => 'site/index',
+                'login' => 'site/login',
+                'logout' => 'site/logout',
+                'calendar' => 'site/calendar',
+                'profile' => 'site/profile',
             ]                                   
         ],
         'authManager' => [

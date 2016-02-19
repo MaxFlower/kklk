@@ -7,7 +7,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Сброс пароля';
+$this->title = 'Сброс пароля / ККЛК';
 
 $fieldOptions1 = [
     'options' => ['class' => 'form-group has-feedback'],
