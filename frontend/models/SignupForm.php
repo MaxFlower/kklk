@@ -24,14 +24,14 @@ class SignupForm extends Model
         return [
             ['username', 'filter', 'filter' => 'trim'],
             ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
+            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Пользователь с данным имянем уже существует'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
+            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Данный email адрес уже используется.'],
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
@@ -53,14 +53,9 @@ class SignupForm extends Model
             $user->generateAuthKey();
             $user->save();
 
-            /*Вносим пользователя с правами petsowner(можно создавать объявления, статьи, события)*/
-            $permissions = new AuthAssignment();
-            $permissions->item_name = 'petsowner';
-            $permissions->user_id = $user->findByUsername($user->username)->id;
-            $permissions->save();
-            //Аналог записи, пользуясь authManager
-            //$userRole = Yii::$app->authManager->getRole('name_of_role');
-            //Yii::$app->authManager->assign($userRole, $user->getId());
+            //Создаем пользователя с ролью
+            $userRole = Yii::$app->authManager->getRole('petsowner');
+            Yii::$app->authManager->assign($userRole, $user->getId());
             return $user;
         }
 

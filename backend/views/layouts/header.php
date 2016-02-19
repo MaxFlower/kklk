@@ -252,7 +252,7 @@ use yii\helpers\Html;
                                 <a href="#">Доступы</a>
                             </div>
                             <div class="col-xs-4 text-center">
-                                <a href="#">Friends</a>
+                                <a href="#">Справка</a>
                             </div>
                         </li>
                         <!-- Menu Footer-->
@@ -262,7 +262,7 @@ use yii\helpers\Html;
                             </div>
                             <div class="pull-right">
                                 <?= Html::a(
-                                    'Sign out',
+                                    'Выход',
                                     ['/logout'],
                                     ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
                                 ) ?>

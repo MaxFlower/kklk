@@ -72,6 +72,14 @@ return [
         'authManager' => [
             'class' => 'yii\rbac\DBManager',
             'defaultRoles' => ['guest'],            
+        ],
+        'formatter' => [
+            'dateFormat' => 'd-M-Y',
+            'datetimeFormat' => 'd-M-Y H:i:s',
+            'timeFormat' => 'H:i:s',
+
+            'locale' => 'ru-RU', //your language locale
+            'defaultTimeZone' => 'Europe/Berlin', // time zone
         ],        
     ],
     'params' => $params,

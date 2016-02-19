@@ -53,8 +53,9 @@ return [
         ],
         'authManager' => [
             'class' => 'yii\rbac\DBManager',
-            'defaultRoles' => ['guest'],            
+            'defaultRoles' => ['guest', 'admin', 'petsowner'],            
         ],
+        
         //Компонент авторизации на базе OpenId
         'authClientCollection' => [
             'class' => 'yii\authclient\Collection',
