@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Янв 30 2016 г., 17:49
+-- Время создания: Фев 19 2016 г., 19:03
 -- Версия сервера: 5.5.41-log
 -- Версия PHP: 5.4.35
 
@@ -28,14 +28,41 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `advs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `ad_text` varchar(50) NOT NULL,
-  `created_at` int(11) DEFAULT NULL,
-  `ad_photo` varchar(50) NOT NULL,
-  `creater_id` int(11) NOT NULL,
-  `rank` int(11) NOT NULL,
-  `tags` text NOT NULL,
-  PRIMARY KEY (`id`)
+  `title` varchar(255) NOT NULL,
+  `anons` text,
+  `content` mediumtext,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `picture_path` varchar(50) DEFAULT NULL,
+  `author_id` int(11) DEFAULT NULL,
+  `publish_status` enum('draft','publish') NOT NULL DEFAULT 'draft',
+  `category_id` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_ad_category` (`category_id`),
+  KEY `FK_ad_author` (`author_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `ad_category`
+--
+
+CREATE TABLE IF NOT EXISTS `ad_category` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Дамп данных таблицы `ad_category`
+--
+
+INSERT INTO `ad_category` (`id`, `title`) VALUES
+(1, 'Продам'),
+(2, 'Куплю'),
+(3, 'Отдам даром'),
+(4, 'Обменяю'),
+(5, 'Другое');
 
 -- --------------------------------------------------------
 
@@ -44,14 +71,57 @@ CREATE TABLE IF NOT EXISTS `advs` (
 --
 
 CREATE TABLE IF NOT EXISTS `articles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `text` text NOT NULL,
-  `creater_id` int(11) NOT NULL,
-  `created_at` int(11) DEFAULT NULL,
-  `art_picture` varchar(50) NOT NULL,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `anons` text,
+  `content` mediumtext,
+  `picture_path` varchar(50) DEFAULT NULL,
+  `category_id` int(10) unsigned DEFAULT NULL,
+  `author_id` int(11) DEFAULT NULL,
+  `publish_status` enum('draft','publish') NOT NULL DEFAULT 'draft',
+  `publish_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `rank` int(11) NOT NULL,
-  `tags` text NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_article_category` (`category_id`),
+  KEY `FK_article_author` (`author_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `article_category`
+--
+
+CREATE TABLE IF NOT EXISTS `article_category` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Дамп данных таблицы `article_category`
+--
+
+INSERT INTO `article_category` (`id`, `title`) VALUES
+(1, 'Уход'),
+(2, 'Породы'),
+(3, 'Разведение'),
+(4, 'События'),
+(5, 'Другое');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `auth`
+--
+
+CREATE TABLE IF NOT EXISTS `auth` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `source` varchar(255) NOT NULL,
+  `source_id` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fkauthuser_iduserid` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -61,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `articles` (
 --
 
 CREATE TABLE IF NOT EXISTS `auth_assignment` (
-  `item_name` varchar(64) NOT NULL DEFAULT 'petsowner',
+  `item_name` varchar(64) NOT NULL,
   `user_id` int(11) NOT NULL,
   `created_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`item_name`,`user_id`)
@@ -74,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `auth_assignment` (
 INSERT INTO `auth_assignment` (`item_name`, `user_id`, `created_at`) VALUES
 ('admin', 1, NULL),
 ('petsowner', 2, NULL),
-('petsowner', 5, NULL);
+('petsowner', 9, 1455879623);
 
 -- --------------------------------------------------------
 
@@ -100,20 +170,20 @@ CREATE TABLE IF NOT EXISTS `auth_item` (
 --
 
 INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `created_at`, `updated_at`) VALUES
-('admin', 5, 'Admin может создавать/удалять/редактировать User, Advs, Articles, Events.', NULL, NULL, NULL, NULL),
+('admin', 1, 'Admin может создавать/удалять/редактировать User, Advs, Articles, Events.', NULL, NULL, NULL, NULL),
 ('create-advs', 2, 'Разрешено создавать объявления.', NULL, NULL, NULL, NULL),
-('create-articles', 3, 'Разрешено создавать статьи.', NULL, NULL, NULL, NULL),
-('create-events', 4, 'Разрешено создавать события.', NULL, NULL, NULL, NULL),
-('create-user', 1, 'Разрешено создавать юзера.', NULL, NULL, NULL, NULL),
+('create-articles', 2, 'Разрешено создавать статьи.', NULL, NULL, NULL, NULL),
+('create-events', 2, 'Разрешено создавать события.', NULL, NULL, NULL, NULL),
+('create-user', 2, 'Разрешено создавать юзера.', NULL, NULL, NULL, NULL),
 ('delete-advs', 2, 'Разрешено удалять объявления.', NULL, NULL, NULL, NULL),
-('delete-articles', 3, 'Разрешено удалять статьи.', NULL, NULL, NULL, NULL),
-('delete-events', 4, 'Разрешено удалять события.', NULL, NULL, NULL, NULL),
-('delete-user', 1, 'Разрешено удалять юзера.', NULL, NULL, NULL, NULL),
-('petsowner', 6, 'Petsowner может создавать advs, articles, events.', NULL, NULL, NULL, NULL),
+('delete-articles', 2, 'Разрешено удалять статьи.', NULL, NULL, NULL, NULL),
+('delete-events', 2, 'Разрешено удалять события.', NULL, NULL, NULL, NULL),
+('delete-user', 2, 'Разрешено удалять юзера.', NULL, NULL, NULL, NULL),
+('petsowner', 1, 'Petsowner может создавать advs, articles, events.', NULL, NULL, NULL, NULL),
 ('update-advs', 2, 'Разрешено редактировать объявления.', NULL, NULL, NULL, NULL),
-('update-articles', 3, 'Разрешено редактировать статьи.', NULL, NULL, NULL, NULL),
-('update-events', 4, 'Разрешено редактировать события.', NULL, NULL, NULL, NULL),
-('update-user', 1, 'Разрешено редактировать юзера.', NULL, NULL, NULL, NULL);
+('update-articles', 2, 'Разрешено редактировать статьи.', NULL, NULL, NULL, NULL),
+('update-events', 2, 'Разрешено редактировать события.', NULL, NULL, NULL, NULL),
+('update-user', 2, 'Разрешено редактировать юзера.', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -166,32 +236,21 @@ CREATE TABLE IF NOT EXISTS `auth_rule` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `cats`
---
-
-CREATE TABLE IF NOT EXISTS `cats` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  `text` varchar(50) NOT NULL,
-  `photo` varchar(50) NOT NULL,
-  `rank` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
 -- Структура таблицы `events`
 --
 
 CREATE TABLE IF NOT EXISTS `events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `text` text NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `content` mediumtext,
   `date` int(11) NOT NULL,
   `description` text NOT NULL,
-  `ev_picture` varchar(50) NOT NULL,
-  `creater_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `picture_path` varchar(50) DEFAULT NULL,
+  `author_id` int(11) DEFAULT NULL,
+  `publish_status` enum('draft','publish') NOT NULL DEFAULT 'draft',
+  `publish_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `EV_event_author` (`author_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -206,19 +265,7 @@ CREATE TABLE IF NOT EXISTS `logList` (
   `action_description` text NOT NULL,
   `action_date` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
-
---
--- Дамп данных таблицы `logList`
---
-
-INSERT INTO `logList` (`id`, `user`, `action_description`, `action_date`) VALUES
-(7, 'Tester', 'User log in', 1447259416),
-(8, 'Tester', 'User log in', 1448269041),
-(9, 'Tester', 'User log in', 1451404568),
-(10, 'Tester', 'User log in', 1454152390),
-(11, 'Tester', 'User log in', 1454156869),
-(12, 'Tester', 'User log in', 1454163602);
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
 
 -- --------------------------------------------------------
 
@@ -241,7 +288,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `password_reset_token` (`password_reset_token`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
 
 --
 -- Дамп данных таблицы `user`
@@ -250,11 +297,31 @@ CREATE TABLE IF NOT EXISTS `user` (
 INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`, `role`) VALUES
 (1, 'Tester', 'KyyYJ6ZmuVaBf3GebxIGVsuT2QP2JAsV', '$2y$13$sd5yOKq/5.rejXdxfWndIeEDThvpht8fmrZkw7EuGXJ1tcB43Lcdm', NULL, 'tester@rambler.ru', 10, 1445347009, 1445347009, 'admin'),
 (2, 'testuser', 'vm50-mZE5QdNzOPWWTnSNwzCVdHM8VPB', '$2y$13$mpwOgDrtHTBZHVb9Cbtyo.6SDSJwbgCkGHZiNsC7nysoDfyTYuoHu', NULL, 'dfgfg@rgeth.ru', 10, 1446032526, 1446032526, 'user'),
-(5, 'Mamm', 't-tcuwtCLrkymOzuA9NbhRTV2ph4H5wn', '$2y$13$Wo/443b00RM8a1S25edhKuXvZE371Ud7szEcVqkei/Mr8XYHCXRdG', NULL, 'mamm@gmail.com', 10, 1454150294, 1454150294, '');
+(9, 'John', '2kNgxPe8gnR_--GtFmPVXiNcmwNTgm6U', '$2y$13$s/W9RlYkvKcaHv/gvQVQaeLbNvbQccsSfMlYfeS7/XNhzIERI2bGW', NULL, 'john@gmail.com', 10, 1455879623, 1455879623, '');
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
+
+--
+-- Ограничения внешнего ключа таблицы `advs`
+--
+ALTER TABLE `advs`
+  ADD CONSTRAINT `FK_ad_category` FOREIGN KEY (`category_id`) REFERENCES `ad_category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_ad_author` FOREIGN KEY (`author_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `articles`
+--
+ALTER TABLE `articles`
+  ADD CONSTRAINT `FK_article_category` FOREIGN KEY (`category_id`) REFERENCES `article_category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_article_author` FOREIGN KEY (`author_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `auth`
+--
+ALTER TABLE `auth`
+  ADD CONSTRAINT `fkauthuser_iduserid` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `auth_assignment`
@@ -274,6 +341,12 @@ ALTER TABLE `auth_item`
 ALTER TABLE `auth_item_child`
   ADD CONSTRAINT `auth_item_child_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `auth_item_child_ibfk_2` FOREIGN KEY (`child`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `events`
+--
+ALTER TABLE `events`
+  ADD CONSTRAINT `EV_event_author` FOREIGN KEY (`author_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
