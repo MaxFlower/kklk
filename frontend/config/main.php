@@ -40,13 +40,15 @@ return [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => false,
             'showScriptName' => false,
-            'rules'=>[
-                ''=>'site/index',
-                'login'=>'site/login',
-                'signup'=>'site/signup',
-                'about'=>'site/about',
-                'contact'=>'site/contact',
-                'logout'=>'site/logout',
+            'rules' => [
+                '' => 'site/index',
+                'login' => 'site/login',
+                'signup' => 'site/signup',
+                'about' => 'site/about',
+                'contact' => 'site/contact',
+                'logout' => 'site/logout',
+                'request-password-reset' => 'site/request-password-reset',
+                'resetpassword' => 'site/reset-password'
             ],                                   
         ],
         'authManager' => [

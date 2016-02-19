@@ -50,7 +50,7 @@ $fieldOptions2 = [
         <?php ActiveForm::end(); ?>
 
         
-        <a href="#">Я забыл пароль</a><br>
+        <a href="/request-password-reset">Я забыл пароль</a><br>
         <a href="/signup" class="text-center">Зарегистрироваться</a>
 
     </div>

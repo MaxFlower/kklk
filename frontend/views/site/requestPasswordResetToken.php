@@ -7,22 +7,27 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Request password reset';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Сброс пароля';
+
+$fieldOptions1 = [
+    'options' => ['class' => 'form-group has-feedback'],
+    'inputTemplate' => "{input}<span class='glyphicon glyphicon-envelope form-control-feedback'></span>"
+];
+
 ?>
-<div class="site-request-password-reset">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>Please fill out your email. A link to reset password will be sent there.</p>
-
+<div class="resetpassword">
     <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'request-password-reset-form']); ?>
+        <div class="col-xs-11">
+            <p>Пожалуйста, введите Ваш e-mail. Письмо, содержащее ссылку для сброса пароля, будет Вам выслано после нажатия кнопки "Отослать"</p>
+            <?php $form = ActiveForm::begin(['id' => 'request-password-reset-form', 'enableClientValidation' => true]); ?>
 
-                <?= $form->field($model, 'email') ?>
+                <?= $form
+                    ->field($model, 'email', $fieldOptions1)
+                    ->label(false)
+                    ->textInput(['placeholder' => $model->getAttributeLabel('Ваш e-mail')]) ?>
 
                 <div class="form-group">
-                    <?= Html::submitButton('Send', ['class' => 'btn btn-primary']) ?>
+                    <?= Html::submitButton('Отослать', ['class' => 'btn btn-primary']) ?>
                 </div>
 
             <?php ActiveForm::end(); ?>
