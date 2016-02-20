@@ -34,15 +34,26 @@
                     ['label' => 'Рабочий стол', 'icon' => 'fa fa-newspaper-o', 'url' => Yii::$app->homeUrl],
                     ['label' => 'Профиль', 'icon' => 'fa fa-user', 'url' => ['/profile']],
                     ['label' => 'Календарь', 'icon' => 'fa fa-calendar', 'url' => ['/calendar']],                    
-                    ['label' => 'Login', 'url' => ['/login'], 'visible' => Yii::$app->user->isGuest],
                     [
                         'label' => 'User менеджер',
                         'icon' => 'fa fa-group',
                         'url' => '#',
                         'items' => [
-                            ['label' => 'Пользователи', 'icon' => 'fa fa-clone', 'url' => ['/user/index']],
+                            ['label' => 'Пользователи', 'icon' => 'fa fa-clone', 'url' => ['/user']],
                             ['label' => 'Управление ролями', 'icon' => 'fa fa-hand-pointer-o', 'url' => ['/permit/access/role'],],
                             ['label' => 'Правила доступа', 'icon' => 'fa fa-lock', 'url' => ['/permit/access/permission'],],                            
+                        ],
+                    ],
+                    ['label' => 'Объявления', 'icon' => 'fa fa-newspaper-o', 'url' => ['/advs']],
+                    ['label' => 'Статьи', 'icon' => 'fa fa-file-word-o', 'url' => ['/articles']],
+                    ['label' => 'События', 'icon' => 'fa fa-bicycle', 'url' => ['/events']],
+                    [
+                        'label' => 'Менеджер категорий',
+                        'icon' => 'fa  fa-folder-o',
+                        'url' => '#',
+                        'items' => [
+                            ['label' => 'Категории объявлений', 'icon' => 'fa fa-sticky-note-o', 'url' => ['/ad-category']],
+                            ['label' => 'Категории статей', 'icon' => 'fa fa-sticky-note-o', 'url' => ['/article-category'],],                                              
                         ],
                     ],
                 ],

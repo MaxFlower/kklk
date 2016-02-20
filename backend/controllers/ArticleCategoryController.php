@@ -4,20 +4,20 @@ namespace backend\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
-use common\models\Advs;
-use common\models\AdvsSearch;
+use common\models\ArticleCategory;
+use common\models\ArticleCategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * AdvsController implements the CRUD actions for Advs model.
+ * ArticleCategoryController implements the CRUD actions for ArticleCategory model.
  */
-class AdvsController extends Controller
+class ArticleCategoryController extends Controller
 {
     public function behaviors()
     {
-        return [
+        return [            
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [                    
@@ -42,12 +42,12 @@ class AdvsController extends Controller
     }
 
     /**
-     * Lists all Advs models.
+     * Lists all ArticleCategory models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new AdvsSearch();
+        $searchModel = new ArticleCategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -57,8 +57,8 @@ class AdvsController extends Controller
     }
 
     /**
-     * Displays a single Advs model.
-     * @param integer $id
+     * Displays a single ArticleCategory model.
+     * @param string $id
      * @return mixed
      */
     public function actionView($id)
@@ -69,13 +69,13 @@ class AdvsController extends Controller
     }
 
     /**
-     * Creates a new Advs model.
+     * Creates a new ArticleCategory model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Advs();
+        $model = new ArticleCategory();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -87,9 +87,9 @@ class AdvsController extends Controller
     }
 
     /**
-     * Updates an existing Advs model.
+     * Updates an existing ArticleCategory model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param string $id
      * @return mixed
      */
     public function actionUpdate($id)
@@ -106,9 +106,9 @@ class AdvsController extends Controller
     }
 
     /**
-     * Deletes an existing Advs model.
+     * Deletes an existing ArticleCategory model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param string $id
      * @return mixed
      */
     public function actionDelete($id)
@@ -119,15 +119,15 @@ class AdvsController extends Controller
     }
 
     /**
-     * Finds the Advs model based on its primary key value.
+     * Finds the ArticleCategory model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Advs the loaded model
+     * @param string $id
+     * @return ArticleCategory the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Advs::findOne($id)) !== null) {
+        if (($model = ArticleCategory::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

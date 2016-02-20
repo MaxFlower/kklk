@@ -43,7 +43,7 @@ class SiteController extends Controller
                         'roles' => ['@'],
                     ],                   
                     [
-                        'actions' => ['logout', 'profile', 'calendar'],
+                        'actions' => ['profile', 'calendar', 'events', 'advs', 'articles'],
                         'allow' => true,
                         'roles' => ['admin'],
                     ],
@@ -78,6 +78,21 @@ class SiteController extends Controller
     public function actionUser()
     {
         return $this->render('user/index');
+    }
+
+    public function actionAdvs()
+    {
+        return $this->render('advs/index');
+    }
+
+    public function actionEvents()
+    {
+        return $this->render('events/index');
+    }
+
+    public function actionArticles()
+    {
+        return $this->render('articles/index');
     }
 
     public function actionProfile()
