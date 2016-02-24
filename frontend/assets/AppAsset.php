@@ -22,7 +22,7 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         'js/app.js',
-        'google-analytics.js'
+        'js/google-analytics.js'
     ];
     public $jsOptions = [
         'position'=>\yii\web\View::POS_HEAD

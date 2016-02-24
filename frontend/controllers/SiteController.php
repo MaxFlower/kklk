@@ -3,6 +3,7 @@ namespace frontend\controllers;
 
 use Yii;
 use common\models\LoginForm;
+use common\models\Articles;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
@@ -13,6 +14,7 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+
 
 /**
  * Site controller
@@ -153,6 +155,22 @@ class SiteController extends Controller
                 'model' => $model,
             ]);
         }        
+    }
+
+    /**
+     * Display articles.
+     *
+     * @return mixed
+     */
+    public function actionArticles()
+    {
+        $model = new Articles();
+
+        $model->getPublishedPosts();
+
+        return $this->render('articles', [
+            'model' => $model,
+        ]);
     }
 
     /**

@@ -1,11 +1,7 @@
 <?php
 use yii\helpers\Html;
-
 /* @var $this \yii\web\View */
 /* @var $content string */
-
-
-
 
     if (class_exists('backend\assets\AppAsset')) {
         backend\assets\AppAsset::register($this);
@@ -16,8 +12,9 @@ use yii\helpers\Html;
     dmstr\web\AdminLteAsset::register($this);
 
     $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
-    ?>
-    <?php $this->beginPage() ?>
+?>
+    
+<?php $this->beginPage() ?>
     <!DOCTYPE html>
     <html lang="<?= Yii::$app->language ?>">
     <head>
@@ -52,5 +49,5 @@ use yii\helpers\Html;
     <?php $this->endBody() ?>
     </body>
     </html>
-    <?php $this->endPage() ?>
+<?php $this->endPage() ?>
 <?php ?>

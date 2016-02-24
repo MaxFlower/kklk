@@ -2,7 +2,9 @@
 
 namespace common\models;
 
+
 use Yii;
+use yii\data\ActiveDataProvider;
 
 /**
  * This is the model class for table "articles".
@@ -79,5 +81,17 @@ class Articles extends \yii\db\ActiveRecord
     public function getAuthor()
     {
         return $this->hasOne(User::className(), ['id' => 'author_id']);
+    }
+
+    /**
+     * Возвращает опубликованные посты
+     * @return ActiveDataProvider
+     */
+    function getPublishedPosts()
+    {
+        return new ActiveDataProvider([
+            'query' => Articles::find()
+                ->where(['publish_status' => 'publish'])
+        ]);
     }
 }

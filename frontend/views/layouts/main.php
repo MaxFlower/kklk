@@ -37,7 +37,7 @@ AppAsset::register($this);
 
     <nav>
         <li class="active"><a href="<?= Yii::$app->homeUrl ?>">Главная</a></li>
-        <li><a href="/about">Объявления</a></li>
+        <li><a href="/articles">Объявления</a></li>
         <li><a href="/contact">События</a></li>
         <li><a href="/about">О нас</a></li>
 

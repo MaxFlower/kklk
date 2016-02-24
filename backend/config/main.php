@@ -8,6 +8,9 @@ $params = array_merge(
 
 return [
     'id' => 'app-backend',
+    'name' => 'KKLK',
+    'language' => 'ru',
+    'charset' => 'utf-8',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
@@ -59,7 +62,7 @@ return [
             'enableStrictParsing' => false,
             'showScriptName' => false,
             'rules' => [
-                             
+                '<controller:\w+>/<action:(\w|-)+>/<id:\d+>' => '<controller>/<action>',             
                 '<module:\w+>/<controller:\w+>/<action:(\w|-)+>' => '<module>/<controller>/<action>',
                 '<module:\w+>/<controller:\w+>/<action:(\w|-)+>/<id:\d+>' => '<module>/<controller>/<action>',
                 '' => 'site/index',
