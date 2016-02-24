@@ -1,6 +1,6 @@
 <?php
     /* @var $this yii\web\View */
-    $this->title = 'Dashboard';
+    $this->title = 'Рабочий стол';
     $this->params['breadcrumbs'][] = $this->title;
 ?>
     <!-- Main content -->

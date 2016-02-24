@@ -1,11 +1,24 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
+use common\models\User;
+
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Events */
 /* @var $form yii\widgets\ActiveForm */
+
+$authors = User::find()->all();
+
+$items = ArrayHelper::map($authors,'id','username');
+
+$params = [
+        'prompt' => 'Укажите автора'
+    ];
+
+
 ?>
 
 <div class="events-form">
@@ -22,11 +35,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'picture_path')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'author_id')->textInput() ?>
+    <?= $form->field($model, 'author_id')->dropDownList($items,$params) ?>
 
     <?= $form->field($model, 'publish_status')->dropDownList([ 'draft' => 'Draft', 'publish' => 'Publish', ], ['prompt' => '']) ?>
-
-    <?= $form->field($model, 'publish_date')->textInput() ?>
+   
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

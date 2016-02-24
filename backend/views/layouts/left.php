@@ -31,7 +31,7 @@
                 'options' => ['class' => 'sidebar-menu'],
                 'items' => [
                     ['label' => 'Admin меню', 'options' => ['class' => 'header']],
-                    ['label' => 'Рабочий стол', 'icon' => 'fa fa-newspaper-o', 'url' => Yii::$app->homeUrl],
+                    ['label' => 'Рабочий стол', 'icon' => 'fa fa-television', 'url' => Yii::$app->homeUrl],
                     ['label' => 'Профиль', 'icon' => 'fa fa-user', 'url' => ['/profile']],
                     ['label' => 'Календарь', 'icon' => 'fa fa-calendar', 'url' => ['/calendar']],                    
                     [

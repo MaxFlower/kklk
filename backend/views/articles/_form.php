@@ -1,11 +1,32 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
+use common\models\User;
+use common\models\ArticleCategory; 
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Articles */
 /* @var $form yii\widgets\ActiveForm */
+
+
+$authors = User::find()->all();
+
+$items = ArrayHelper::map($authors,'id','username');
+
+$params = [
+        'prompt' => 'Укажите автора'
+    ];
+
+$category = ArticleCategory::find()->all();
+
+$categoryItem = ArrayHelper::map($category,'id','title');
+
+$categoryParams = [
+        'prompt' => 'Укажите категорию'
+    ];
+
 ?>
 
 <div class="articles-form">
@@ -20,13 +41,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'picture_path')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'category_id')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'author_id')->textInput() ?>
+    <?= $form->field($model, 'author_id')->dropDownList($items,$params) ?>
 
     <?= $form->field($model, 'publish_status')->dropDownList([ 'draft' => 'Draft', 'publish' => 'Publish', ], ['prompt' => '']) ?>
 
-    <?= $form->field($model, 'publish_date')->textInput() ?>
+    <?= $form->field($model, 'category_id')->dropDownList($categoryItem, $categoryParams) ?>
 
     <?= $form->field($model, 'rank')->textInput() ?>
 
