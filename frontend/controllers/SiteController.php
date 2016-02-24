@@ -164,9 +164,7 @@ class SiteController extends Controller
      */
     public function actionArticles()
     {
-        $model = new Articles();
-
-        $model->getPublishedPosts();
+        $model = Articles::find();
 
         return $this->render('articles', [
             'model' => $model,
