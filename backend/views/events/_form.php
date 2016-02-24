@@ -18,8 +18,6 @@ $items = ArrayHelper::map($authors,'id','username');
 $params = [
         'prompt' => 'Укажите автора'
     ];
-
-
 ?>
 
 <div class="events-form">
@@ -57,7 +55,7 @@ $params = [
    
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Редактировать', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
