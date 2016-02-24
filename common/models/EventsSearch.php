@@ -18,8 +18,8 @@ class EventsSearch extends Events
     public function rules()
     {
         return [
-            [['id', 'date', 'author_id'], 'integer'],
-            [['title', 'content', 'description', 'picture_path', 'publish_status', 'publish_date'], 'safe'],
+            [['id', 'author_id'], 'integer'],
+            [['title', 'date',  'content', 'description', 'picture_path', 'publish_status', 'publish_date'], 'safe'],
         ];
     }
 

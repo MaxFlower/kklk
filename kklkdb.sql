@@ -243,7 +243,7 @@ CREATE TABLE IF NOT EXISTS `events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `content` mediumtext,
-  `date` int(11) NOT NULL,
+  `date` varchar(50) NOT NULL,
   `description` text NOT NULL,
   `picture_path` varchar(50) DEFAULT NULL,
   `author_id` int(11) DEFAULT NULL,

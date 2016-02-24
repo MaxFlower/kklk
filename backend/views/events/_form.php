@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use common\models\User;
+use dosamigos\datetimepicker\DateTimePicker;
 
 
 /* @var $this yii\web\View */
@@ -29,7 +30,22 @@ $params = [
 
     <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'date')->textInput() ?>
+    <?= $form->field($model, 'date')->widget(DateTimePicker::className(), [
+        'language' => 'en',
+        'size' => 'ms',
+        'template' => '{input}',
+        'pickButtonIcon' => 'glyphicon glyphicon-time',
+        'inline' => false,
+        'clientOptions' => [
+            'startView' => 2,
+            'minView' => 0,
+            'maxView' => 1,
+            'autoclose' => true,
+            //'linkFormat' => 'HH:ii P', // if inline = true
+            'format' => 'dd-mm-yyyy HH:ii', // if inline = false
+            'todayBtn' => true
+        ]
+    ]);?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 

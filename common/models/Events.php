@@ -10,7 +10,7 @@ use Yii;
  * @property integer $id
  * @property string $title
  * @property string $content
- * @property integer $date
+ * @property string $date
  * @property string $description
  * @property string $picture_path
  * @property integer $author_id
@@ -37,7 +37,8 @@ class Events extends \yii\db\ActiveRecord
         return [
             [['title', 'date', 'description'], 'required'],
             [['content', 'description', 'publish_status'], 'string'],
-            [['date', 'author_id'], 'integer'],
+            [['date'], 'string'],
+            [['author_id'], 'integer'],
             [['publish_date'], 'safe'],
             [['title'], 'string', 'max' => 255],
             [['picture_path'], 'string', 'max' => 50]
