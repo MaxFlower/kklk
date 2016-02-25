@@ -4,7 +4,8 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use common\models\User;
-use common\models\ArticleCategory; 
+use common\models\ArticleCategory;
+use common\models\UploadForm;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Articles */
@@ -31,7 +32,7 @@ $categoryParams = [
 
 <div class="articles-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['id' => 'article-form', 'options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
@@ -39,7 +40,7 @@ $categoryParams = [
 
     <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'picture_path')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'picture_path')->fileInput() ?>     
 
     <?= $form->field($model, 'author_id')->dropDownList($items,$params) ?>
 

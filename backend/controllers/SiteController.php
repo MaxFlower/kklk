@@ -10,6 +10,8 @@ use common\models\User;
 use common\models\logList;
 use yii\filters\VerbFilter;
 use yii\behaviors\TimestampBehavior;
+use common\models\UploadForm;
+use yii\web\UploadedFile;
 
 /**
  * Site controller
@@ -130,6 +132,6 @@ class SiteController extends Controller
     {
         Yii::$app->user->logout();        
         return $this->goHome();
-    }
+    }    
     
 }

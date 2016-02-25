@@ -2,9 +2,8 @@
 
 namespace common\models;
 
-
 use Yii;
-
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "articles".
@@ -44,7 +43,7 @@ class Articles extends \yii\db\ActiveRecord
             [['category_id', 'author_id', 'rank'], 'integer'],
             [['publish_date'], 'safe'],
             [['title'], 'string', 'max' => 255],
-            [['picture_path'], 'string', 'max' => 50]
+            [['picture_path'], 'file', 'extensions' => 'gif, jpg']
         ];
     }
 
@@ -82,6 +81,5 @@ class Articles extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'author_id']);
     }
-
     
 }
