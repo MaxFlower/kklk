@@ -1,25 +1,46 @@
 <?php
 
-/* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model \frontend\models\ContactForm */
+use yii\widgets\ListView;
+use yii\widgets\ActiveForm;
 
-    
-     
-    use common\models\Articles;
-    use yii\widgets\ListView;
-    use yii\data\ActiveDataProvider;
-     
-    $dataProvider = new ActiveDataProvider([
-        'query' => Articles::find(),
-        'pagination' => [
-            'pageSize' => 2,
-        ],
-    ]);
-     
-    echo ListView::widget([
-        'dataProvider' => $dataProvider,
-        'itemView' => '_shortView',
-    ]);
+
+/* @var $this yii\web\View */
+/* @var $this yii\widgets\ListView */
+/* @var $this yii\widgets\ActiveForm */
+
+$this->title = 'Статьи / ККЛК';
 
 ?>
+
+
+    
+<div class="site-article">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="container-fluid">
+                <h3 class="text-center">Статьи</h3>
+                <div class="row">                   
+                    <?php                                                 
+                        echo ListView::widget([
+                            'dataProvider' => $dataProvider,
+                            'itemView' => '_shortView',
+                        ]);
+                    ?> 
+                </div>
+            </div>                      
+        </div>
+
+        <div class="col-md-4">
+            <h3 class="text-center">Фильтр</h3>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-1">
+                    <?php echo $this->render('_filter', ['model' => $searchModel]); ?>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+
+    
+</div>

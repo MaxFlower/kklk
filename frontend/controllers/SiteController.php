@@ -4,6 +4,7 @@ namespace frontend\controllers;
 use Yii;
 use common\models\LoginForm;
 use common\models\Articles;
+use common\models\ArticlesSearch;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
@@ -14,6 +15,7 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\data\ActiveDataProvider;
 
 
 /**
@@ -164,10 +166,14 @@ class SiteController extends Controller
      */
     public function actionArticles()
     {
-        $model = Articles::find();
+        $searchModel = new ArticlesSearch();
+        //Работает только для статей с Articles::find()->where(['publish_status' => 'publish'])
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);        
+        $dataProvider->pagination = ['PageSize' => 2];
 
         return $this->render('articles', [
-            'model' => $model,
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
         ]);
     }
 

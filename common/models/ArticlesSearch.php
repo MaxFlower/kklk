@@ -41,7 +41,7 @@ class ArticlesSearch extends Articles
      */
     public function search($params)
     {
-        $query = Articles::find();
+        $query = Articles::find()->where(['publish_status' => 'publish']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

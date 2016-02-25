@@ -45,7 +45,7 @@ return [
                 'login' => 'site/login',
                 'signup' => 'site/signup',
                 'about' => 'site/about',
-                'articles' => 'site/articles',
+                'articles' => 'site/articles',                
                 'contact' => 'site/contact',
                 'logout' => 'site/logout',
                 'request-password-reset' => 'site/request-password-reset',
