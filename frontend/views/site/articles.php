@@ -19,14 +19,14 @@ $this->title = 'Статьи / ККЛК';
         <div class="col-md-8">
             <div class="container-fluid">
                 <h3 class="text-center">Статьи</h3>
-                <div class="row">                   
+                                                    
                     <?php                                                 
                         echo ListView::widget([
                             'dataProvider' => $dataProvider,
                             'itemView' => '_shortView',
                         ]);
                     ?> 
-                </div>
+                
             </div>                      
         </div>
 
